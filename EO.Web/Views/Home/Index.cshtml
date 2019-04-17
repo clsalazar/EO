@@ -1,0 +1,120 @@
+﻿@model EO.Web.Models.HomeModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-2">
+            <img src="/Content/images/the-ogre.png" class="img-responsive" />
+        </div>
+        <div class="col-md-10">
+            <h1>The Ogre's Sandbox</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="form-group">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <!-- Zip code input -->
+            @Html.TextBoxFor(model => model.ZipCode, new { @class = "zip-input", @placeholder = "Enter a zip code", @autocomplete = "off" })
+            <input type="submit" class="zip-submit" value="Get Quotes" />
+
+            <!-- Show options if multiple providers found -->
+            if (Model.Ids != null && Model.Ids.Count > 1)
+            {
+                @section Scripts
+{
+                    @if (Model.Ids.Count > 1)
+                    {
+                        <script>
+                            $('#providerModal').modal();
+                        </script>
+                    }
+                }
+                <div class="modal fade" id="providerModal" tabindex="-1" role="dialog" aria-labelledby="providerModal" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Select Utility Provider</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="btn-toolbar">
+                                    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                                    {
+                                        foreach (var id in Model.Ids)
+                                        {
+                                            <button type="submit" class="btn btn-default" value="@id.Key" name="ProviderId">@id.Value</button>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- Zip code input error message-->
+            <div class="no-plan">
+                <p>@Html.ValidationMessageFor(model => model.ZipCode)</p>
+            </div>
+        }
+
+        <div class="container fade-in">
+            <div class="content">
+                @if (Model.Rates != null && Model.Rates.Count >= 1)
+                {
+                    <div class="col-lg-3">
+                        <div class="pull-left">
+                            <img src="~/Content/images/ogre-hurray.png" height="200" width="180" />
+                            <h3>Check out these plans we found in your area!</h3>
+                        </div>
+                    </div>
+
+                    <!-- Display all plans -->
+                    foreach (var rate in Model.Rates)
+                    {
+                        <div class="plan">
+                            <p id="price">@(Math.Round((rate.kwh1000 * 100), 2))¢<span>/kWh</span></p>
+                            <img src="~/Content/images/energyogre-logo.png" height="75" width="75" />
+                            <p>@rate.Product</p>
+                            <p id="promo">@rate.PromotionDesc</p>
+                            <div class="icons">
+                                <i class="glyphicon glyphicon-calendar"></i> <span id="detail">@rate.TermValue months</span>
+                                <i class="glyphicon glyphicon-leaf"></i> <span id="detail">@rate.Renewable%</span>
+                                <i class="glyphicon glyphicon-lock"></i><span id="detail">Fixed</span>
+                            </div>
+                            <ul>
+                                <li>
+                                    <i class="glyphicon glyphicon-file"></i>
+                                    <a id="detail" href="@rate.FactsURL" target="_blank">Electricity Facts Label</a>
+                                </li>
+                                <li>
+                                    <i class="glyphicon glyphicon-file"></i>
+                                    <a id="detail" href="@rate.TermsURL" target="_blank">Terms of Service</a>
+                                </li>
+                                <li>
+                                    <i class="glyphicon glyphicon-file"></i>
+                                    <a id="detail" href="@rate.RightsURL" target="_blank">Your Rights as a Customer</a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                }
+
+                //No plans found
+                else if (Model.Ids != null && Model.Ids.Count == 0)
+                {
+                <div class="no-plan">
+                    <p> Sorry! No products were found in your area</p>
+                    <img src="~/Content/images/ogre-not-found.png" />
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,216 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.zip-input {
+    width: 100%;
+    margin: 10px 10px;
+    font-size: 20px;
+    font-weight: lighter;
+    outline: none;
+    border: none;
+    color: #3e3c3c;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.zip-input:focus {
+    border-bottom: 1px solid #ddd;
+}
+
+.zip-submit {
+    margin: 0 auto;
+    display: block;
+    padding: 10px 30px;
+    background-color: transparent;
+    width: 100%;
+    min-width: 350px;
+    border: 1px solid #ddd;
+}
+
+.zip-submit:hover {
+    border: 2px solid #ddd;
+}
+
+.input-error {
+    padding: 20px;
+}
+
+.modal-content {
+    display: inline-block;
+    width: 80%;
+    top: 200px;
+}
+
+.plan {
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 20px;
+    width: 35%;
+    border: solid 1px #ddd;
+    border-radius: 8px;
+    transition: box-shadow .3s;
+    box-shadow: 0 4px 2px -2px #ddd;
+}
+
+.pull-left {
+    position: fixed;
+    left: 250px;
+    width: 20%;
+}
+
+#detail {
+    font-size: 14px;
+}
+
+#price {
+    font-size: 40px;
+}
+
+#promo {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.plan:hover {
+    box-shadow: 0 0 20px #ddd;
+}
+
+.plan span{
+    font-size: 16px;
+}
+
+.no-plan{
+    margin: 0 auto;
+    padding: 10px;
+    width: 60%;
+}
+
+.no-plan p{
+    font-size: large;
+    font-weight: 500;
+    color: #E64A19;
+}
+
+.icons {
+    display: block;
+}
+
+.glyphicon {
+    margin: 5px;
+    font-size: 17px;
+    color: #bebebe;
+}
+
+.content {
+    padding-top: 20px;
+}
+
+.col-lg-3 p{
+    float: right;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    margin-left: 60px;
+}
+
+li {
+    margin: 10px;
+    text-align: left;
+}
+
+a{
+    color: #7c9bce;
+}
+
+h3{
+    color: #7a7474;
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    opacity: 0; 
+    -webkit-animation: fadeIn ease-in 1;
+    -moz-animation: fadeIn ease-in 1;
+    animation: fadeIn ease-in 1;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+.fade-in.one {
+    -webkit-animation-delay: 0.5s;
+    -moz-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+}
+
+.fade-in.two {
+    -webkit-animation-delay: 0.9s;
+    -moz-animation-delay: 0.9s;
+    animation-delay: 0.9s;
+}
+
+.fade-in.three {
+    -webkit-animation-delay: 1.5s;
+    -moz-animation-delay: 1.5s;
+    animation-delay: 1.5s;
+}
